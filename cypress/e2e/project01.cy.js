@@ -97,7 +97,7 @@ describe("Homework01", () => {
     .should('have.text', 'Message')
   });
   
-  it.only("Test Case 08 - Validate the Consent checkbox", () => {
+  it("Test Case 08 - Validate the Consent checkbox", () => {
     cy.get('.checkbox').should('have.text', ' I give my consent to be contacted.');
 
     cy.get('.checkbox input')
@@ -110,10 +110,29 @@ describe("Homework01", () => {
   });
   
   it("Test Case 09 - Validate the SUBMIT button", () => {
-
+    cy.get('.button.is-link').should('be.visible')
+    .and('be.enabled')
+    .and('have.text', 'SUBMIT')
   });
   
-  it("Test Case 10 - Validate the form submission", () => {
+  const personalInfo = ['Ali Y', '12600 River Road', 'aliyassi@gmail.com', '708-123-4567', 'All Hail Plankton!']
 
+  it.only("Test Case 10 - Validate the form submission", () => {
+    cy.get('.radio input').eq(0).click();
+    
+    cy.get('.control > .input').each(($el, index) => {
+      cy.wrap($el).type(personalInfo[index]);
+    });
+    
+    cy.get('.textarea').type('All Hail Plankton!');
+
+    cy.get('.checkbox input').click();
+    cy.get('.button.is-link').click();
+
+    Cypress.on("uncaught:exception", () => {
+      return false;
+    });
+
+    cy.get('.mt-5').should('have.text', 'Thanks for submitting!');
   });
 });
