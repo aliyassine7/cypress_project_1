@@ -67,7 +67,7 @@ describe("Homework01", () => {
     .should('have.text', 'Address');
   });
 
-  it.only("Test Case 05 - Validate the Email input box", () => {
+  it("Test Case 05 - Validate the Email input box", () => {
     cy.get('.input').eq(2)
     .should('be.visible')
     .and('have.attr', 'placeholder', 'Enter your email')
@@ -78,15 +78,29 @@ describe("Homework01", () => {
   });
 
   it("Test Case 06 - Validate the Phone input box", () => {
-    
+    cy.get('.input').eq(3)
+    .should('be.visible')
+    .and('have.attr', 'placeholder', 'Enter your phone number')
+    .and('not.have.attr', 'required')
+
+    cy.get('.label').eq(4)
+    .should('have.text', 'Phone')
   });
 
   it("Test Case 07 - Validate the Message text area", () => {
-    
+    cy.get('.textarea')
+    .should('be.visible')
+    .and('have.attr', 'placeholder', 'Type your message here...')
+    .and('not.have.attr', 'required')
+
+    cy.get('.label').eq(5)
+    .should('have.text', 'Message')
   });
   
-  it("Test Case 08 - Validate the Consent checkbox", () => {
-
+  it.only("Test Case 08 - Validate the Consent checkbox", () => {
+    cy.get('.checkbox')
+    .should('have.attr', 'required')
+    .and('be.checked')
   });
   
   it("Test Case 09 - Validate the SUBMIT button", () => {
