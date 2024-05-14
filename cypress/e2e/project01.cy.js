@@ -98,9 +98,15 @@ describe("Homework01", () => {
   });
   
   it.only("Test Case 08 - Validate the Consent checkbox", () => {
-    cy.get('.checkbox')
-    .should('have.attr', 'required')
-    .and('be.checked')
+    cy.get('.checkbox').should('have.text', ' I give my consent to be contacted.');
+
+    cy.get('.checkbox input')
+    .should('be.enabled')
+    .click()
+    .should('be.checked')
+    .uncheck()
+    .should('not.be.checked')
+    .and('have.attr', 'required');
   });
   
   it("Test Case 09 - Validate the SUBMIT button", () => {
