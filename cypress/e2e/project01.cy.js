@@ -117,7 +117,7 @@ describe("Homework01", () => {
   
   const personalInfo = ['Ali Y', '12600 River Road', 'aliyassi@gmail.com', '708-123-4567', 'All Hail Plankton!']
 
-  it.only("Test Case 10 - Validate the form submission", () => {
+  it("Test Case 10 - Validate the form submission", () => {
     cy.get('.radio input').eq(0).click();
     
     cy.get('.control > .input').each(($el, index) => {
